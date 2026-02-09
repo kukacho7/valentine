@@ -1,4 +1,14 @@
-// Carousel functionality
+// Get elements
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const angryMessage = document.getElementById('angryMessage');
+const questionSection = document.getElementById('questionSection');
+const successSection = document.getElementById('successSection');
+const confettiCanvas = document.getElementById('confetti');
+const initialPhoto = document.getElementById('initialPhoto');
+const carouselWrapper = document.getElementById('carouselWrapper');
+
+// Carousel elements
 const carousel = document.querySelector('.carousel');
 const items = document.querySelectorAll('.carousel-item');
 const prevBtn = document.getElementById('prevBtn');
@@ -6,7 +16,10 @@ const nextBtn = document.getElementById('nextBtn');
 
 let currentIndex = 0;
 const totalItems = items.length;
+let noClickCount = 0;
+let autoRotate;
 
+// Carousel update function
 function updateCarousel() {
     items.forEach((item, index) => {
         item.classList.remove('active', 'prev-1', 'prev-2', 'next-1', 'next-2');
@@ -25,6 +38,7 @@ function updateCarousel() {
     });
 }
 
+// Carousel navigation
 prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + totalItems) % totalItems;
     updateCarousel();
@@ -35,34 +49,21 @@ nextBtn.addEventListener('click', () => {
     updateCarousel();
 });
 
-// Auto-rotate carousel
-let autoRotate = setInterval(() => {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updateCarousel();
-}, 3000);
-
-// Pause auto-rotate on hover
-carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
-carousel.addEventListener('mouseleave', () => {
+// Start auto-rotate function
+function startAutoRotate() {
     autoRotate = setInterval(() => {
         currentIndex = (currentIndex + 1) % totalItems;
         updateCarousel();
     }, 3000);
-});
+}
 
-// Initialize carousel
-updateCarousel();
+// Pause auto-rotate on hover
+function setupCarouselHover() {
+    carousel.addEventListener('mouseenter', () => clearInterval(autoRotate));
+    carousel.addEventListener('mouseleave', () => startAutoRotate());
+}
 
-// Valentine buttons
-const yesBtn = document.getElementById('yesBtn');
-const noBtn = document.getElementById('noBtn');
-const angryMessage = document.getElementById('angryMessage');
-const questionSection = document.getElementById('questionSection');
-const successSection = document.getElementById('successSection');
-const confettiCanvas = document.getElementById('confetti');
-
-let noClickCount = 0;
-
+// No button behavior
 noBtn.addEventListener('mouseenter', function() {
     const randomX = Math.random() * (window.innerWidth - 200);
     const randomY = Math.random() * (window.innerHeight - 100);
@@ -80,13 +81,28 @@ noBtn.addEventListener('click', function() {
     yesBtn.style.transform = `scale(${currentSize})`;
 });
 
+// Yes button - show success and carousel
 yesBtn.addEventListener('click', function() {
+    // Hide initial photo and question
+    initialPhoto.style.display = 'none';
     questionSection.style.display = 'none';
+    
+    // Show success message
     successSection.classList.add('show');
-    clearInterval(autoRotate);
+    
+    // Show carousel after a short delay
+    setTimeout(() => {
+        carouselWrapper.classList.add('show');
+        updateCarousel();
+        startAutoRotate();
+        setupCarouselHover();
+    }, 1500);
+    
+    // Start confetti
     createConfetti();
 });
 
+// Confetti animation
 function createConfetti() {
     const ctx = confettiCanvas.getContext('2d');
     confettiCanvas.width = window.innerWidth;

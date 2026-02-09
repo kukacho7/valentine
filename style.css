@@ -24,6 +24,52 @@ body {
     text-align: center;
 }
 
+/* Initial Photo Section */
+.initial-photo {
+    margin-bottom: 40px;
+    animation: fadeInScale 1s ease-out;
+}
+
+.main-photo {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border: 5px solid white;
+    display: block;
+    margin: 0 auto;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Hide carousel initially */
+.carousel-wrapper {
+    display: none;
+    margin-top: 50px;
+}
+
+.carousel-wrapper.show {
+    display: block;
+    animation: fadeIn 1s;
+}
+
+.carousel-title {
+    font-size: 2rem;
+    color: #764ba2;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 /* 3D Carousel */
 .carousel-container {
     position: relative;
@@ -289,5 +335,9 @@ body {
     .btn {
         padding: 12px 30px;
         font-size: 1.1rem;
+    }
+    
+    .main-photo {
+        max-width: 100%;
     }
 }

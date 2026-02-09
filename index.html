@@ -8,51 +8,59 @@
 </head>
 <body>
     <div class="container">
-        <!-- 3D Carousel Photo Gallery -->
-        <div class="carousel-container">
-            <div class="carousel">
-                <div class="carousel-item"><img src="images/bubu1.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8809.PNG" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8810.PNG" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8811.PNG" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8812.PNG" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8813.PNG" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8814.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8815.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8816.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8817.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8818.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8819.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8821.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8822.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8823.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8824.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8825.jpg" alt="Us"></div>
-                <div class="carousel-item"><img src="images/IMG_8826.jpg" alt="Us"></div>
-            </div>
-            <button class="carousel-btn prev" id="prevBtn">❮</button>
-            <button class="carousel-btn next" id="nextBtn">❯</button>
+        <!-- Initial Photo (Only IMG_8827) -->
+        <div class="initial-photo" id="initialPhoto">
+            <img src="images/IMG_8827.jpg" alt="Us" class="main-photo">
         </div>
 
         <!-- Question Section -->
         <div class="question-section" id="questionSection">
-            <h1 class="question">კუს ჩემი ვალენტინი იქნები? 💕</h1>
+            <h1 class="question">Will You Be My Valentine? 💕</h1>
             
             <div class="buttons">
-                <button class="btn yes-btn" id="yesBtn">კი რათქმაუნდა! 💖</button>
-                <button class="btn no-btn" id="noBtn">არა</button>
+                <button class="btn yes-btn" id="yesBtn">Yes! 💖</button>
+                <button class="btn no-btn" id="noBtn">No</button>
             </div>
 
             <!-- Angry Message (hidden initially) -->
             <div class="angry-message" id="angryMessage">
                 <div class="angry-emoji">😠💔</div>
-                <p>ეეეე, კი უნდა აირჩიო! 💔</p>
+                <p>Noooo! Please click Yes! 💔</p>
             </div>
         </div>
 
-        <!-- Success Section (hidden initially) -->
+        <!-- 3D Carousel (Hidden initially, shown after Yes) -->
+        <div class="carousel-wrapper" id="carouselWrapper">
+            <h2 class="carousel-title">Our Beautiful Moments 💕</h2>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item"><img src="images/bubu1.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8809.PNG" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8810.PNG" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8811.PNG" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8812.PNG" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8813.PNG" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8814.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8815.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8816.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8817.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8818.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8819.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8821.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8822.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8823.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8824.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8825.jpg" alt="Us"></div>
+                    <div class="carousel-item"><img src="images/IMG_8826.jpg" alt="Us"></div>
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                <button class="carousel-btn next" id="nextBtn">❯</button>
+            </div>
+        </div>
+
+        <!-- Success Section -->
         <div class="success-section" id="successSection">
-            <h1 class="success-title">ჰეჰეე! 🎉💖</h1>
+            <h1 class="success-title">Yaaay! 🎉💖</h1>
             <div class="hearts-animation">
                 <span class="heart">❤️</span>
                 <span class="heart">💕</span>
@@ -60,7 +68,7 @@
                 <span class="heart">💗</span>
                 <span class="heart">💝</span>
             </div>
-            <p class="success-message">მიყვარხარ კუუს 🥰</p>
+            <p class="success-message">I'm so happy! Happy Valentine's Day, my love! 🥰</p>
         </div>
     </div>
 
