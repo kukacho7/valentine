@@ -81,7 +81,7 @@ noBtn.addEventListener('click', function() {
     yesBtn.style.transform = `scale(${currentSize})`;
 });
 
-// Yes button - show success and carousel
+// Yes button - show success with confetti
 yesBtn.addEventListener('click', function() {
     // Hide initial photo and question
     initialPhoto.style.display = 'none';
@@ -89,6 +89,15 @@ yesBtn.addEventListener('click', function() {
     
     // Show success message
     successSection.classList.add('show');
+    
+    // Play music
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+        bgMusic.volume = 0.5;
+        bgMusic.play().catch(() => {
+            console.log('Music autoplay blocked');
+        });
+    }
     
     // Show carousel after a short delay
     setTimeout(() => {
