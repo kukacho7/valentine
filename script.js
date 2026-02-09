@@ -1,4 +1,7 @@
 // Get elements
+const envelope = document.getElementById('envelope');
+const envelopeWrapper = document.getElementById('envelopeWrapper');
+const mainContent = document.getElementById('mainContent');
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const angryMessage = document.getElementById('angryMessage');
@@ -7,6 +10,7 @@ const successSection = document.getElementById('successSection');
 const confettiCanvas = document.getElementById('confetti');
 const initialPhoto = document.getElementById('initialPhoto');
 const carouselWrapper = document.getElementById('carouselWrapper');
+const sparklesContainer = document.getElementById('sparkles');
 
 // Carousel elements
 const carousel = document.querySelector('.carousel');
@@ -18,6 +22,70 @@ let currentIndex = 0;
 const totalItems = items.length;
 let noClickCount = 0;
 let autoRotate;
+
+// Envelope click - Open animation
+envelopeWrapper.addEventListener('click', function(event) {
+    // Add opening class
+    envelope.classList.add('opening');
+    
+    // Create sparkles
+    createSparkles(event.clientX, event.clientY);
+    
+    // Play music when envelope opens
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+        bgMusic.volume = 0.5;
+        bgMusic.play().catch(() => {
+            console.log('Music autoplay blocked');
+        });
+    }
+    
+    // Wait for envelope animation, then show main content
+    setTimeout(() => {
+        envelopeWrapper.style.display = 'none';
+        mainContent.classList.add('show');
+        
+        // More sparkles when content appears
+        createMultipleSparkles();
+    }, 1000);
+});
+
+// Create sparkles effect
+function createSparkles(x, y) {
+    for (let i = 0; i < 20; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        
+        // Random position around click point
+        const offsetX = (Math.random() - 0.5) * 200;
+        const offsetY = (Math.random() - 0.5) * 200;
+        
+        sparkle.style.left = (x + offsetX) + 'px';
+        sparkle.style.top = (y + offsetY) + 'px';
+        
+        // Random color
+        const colors = ['#FFD700', '#FFC0CB', '#FF69B4', '#FF1493', '#FFF'];
+        sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        
+        sparklesContainer.appendChild(sparkle);
+        
+        // Remove after animation
+        setTimeout(() => {
+            sparkle.remove();
+        }, 1500);
+    }
+}
+
+// Create multiple sparkles
+function createMultipleSparkles() {
+    for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            createSparkles(x, y);
+        }, i * 200);
+    }
+}
 
 // Carousel update function
 function updateCarousel() {
@@ -90,15 +158,6 @@ yesBtn.addEventListener('click', function() {
     // Show success message
     successSection.classList.add('show');
     
-    // Play music
-    const bgMusic = document.getElementById('bgMusic');
-    if (bgMusic) {
-        bgMusic.volume = 0.5;
-        bgMusic.play().catch(() => {
-            console.log('Music autoplay blocked');
-        });
-    }
-    
     // Show carousel after a short delay
     setTimeout(() => {
         carouselWrapper.classList.add('show');
@@ -109,6 +168,9 @@ yesBtn.addEventListener('click', function() {
     
     // Start confetti
     createConfetti();
+    
+    // More sparkles
+    createMultipleSparkles();
 });
 
 // Confetti animation
@@ -169,3 +231,12 @@ function createConfetti() {
     
     draw();
 }
+
+// Continuous sparkle effect
+setInterval(() => {
+    if (mainContent.classList.contains('show')) {
+        const x = Math.random() * window.innerWidth;
+        const y = Math.random() * window.innerHeight;
+        createSparkles(x, y);
+    }
+}, 3000);
